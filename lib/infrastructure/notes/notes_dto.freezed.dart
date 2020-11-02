@@ -8,6 +8,237 @@ part of 'notes_dto.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+NoteDto _$NoteDtoFromJson(Map<String, dynamic> json) {
+  return _NoteDto.fromJson(json);
+}
+
+/// @nodoc
+class _$NoteDtoTearOff {
+  const _$NoteDtoTearOff();
+
+// ignore: unused_element
+  _NoteDto call(
+      {@JsonKey(ignore: true) String id,
+      @required String body,
+      @required int color,
+      @required List<TodoItemDto> todos,
+      @required @ServerTimestampConverter() FieldValue serverTimeStamp}) {
+    return _NoteDto(
+      id: id,
+      body: body,
+      color: color,
+      todos: todos,
+      serverTimeStamp: serverTimeStamp,
+    );
+  }
+
+// ignore: unused_element
+  NoteDto fromJson(Map<String, Object> json) {
+    return NoteDto.fromJson(json);
+  }
+}
+
+/// @nodoc
+// ignore: unused_element
+const $NoteDto = _$NoteDtoTearOff();
+
+/// @nodoc
+mixin _$NoteDto {
+  @JsonKey(ignore: true)
+  String get id;
+  String get body;
+  int get color;
+  List<TodoItemDto> get todos;
+  @ServerTimestampConverter()
+  FieldValue get serverTimeStamp;
+
+  Map<String, dynamic> toJson();
+  $NoteDtoCopyWith<NoteDto> get copyWith;
+}
+
+/// @nodoc
+abstract class $NoteDtoCopyWith<$Res> {
+  factory $NoteDtoCopyWith(NoteDto value, $Res Function(NoteDto) then) =
+      _$NoteDtoCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(ignore: true) String id,
+      String body,
+      int color,
+      List<TodoItemDto> todos,
+      @ServerTimestampConverter() FieldValue serverTimeStamp});
+}
+
+/// @nodoc
+class _$NoteDtoCopyWithImpl<$Res> implements $NoteDtoCopyWith<$Res> {
+  _$NoteDtoCopyWithImpl(this._value, this._then);
+
+  final NoteDto _value;
+  // ignore: unused_field
+  final $Res Function(NoteDto) _then;
+
+  @override
+  $Res call({
+    Object id = freezed,
+    Object body = freezed,
+    Object color = freezed,
+    Object todos = freezed,
+    Object serverTimeStamp = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed ? _value.id : id as String,
+      body: body == freezed ? _value.body : body as String,
+      color: color == freezed ? _value.color : color as int,
+      todos: todos == freezed ? _value.todos : todos as List<TodoItemDto>,
+      serverTimeStamp: serverTimeStamp == freezed
+          ? _value.serverTimeStamp
+          : serverTimeStamp as FieldValue,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$NoteDtoCopyWith<$Res> implements $NoteDtoCopyWith<$Res> {
+  factory _$NoteDtoCopyWith(_NoteDto value, $Res Function(_NoteDto) then) =
+      __$NoteDtoCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(ignore: true) String id,
+      String body,
+      int color,
+      List<TodoItemDto> todos,
+      @ServerTimestampConverter() FieldValue serverTimeStamp});
+}
+
+/// @nodoc
+class __$NoteDtoCopyWithImpl<$Res> extends _$NoteDtoCopyWithImpl<$Res>
+    implements _$NoteDtoCopyWith<$Res> {
+  __$NoteDtoCopyWithImpl(_NoteDto _value, $Res Function(_NoteDto) _then)
+      : super(_value, (v) => _then(v as _NoteDto));
+
+  @override
+  _NoteDto get _value => super._value as _NoteDto;
+
+  @override
+  $Res call({
+    Object id = freezed,
+    Object body = freezed,
+    Object color = freezed,
+    Object todos = freezed,
+    Object serverTimeStamp = freezed,
+  }) {
+    return _then(_NoteDto(
+      id: id == freezed ? _value.id : id as String,
+      body: body == freezed ? _value.body : body as String,
+      color: color == freezed ? _value.color : color as int,
+      todos: todos == freezed ? _value.todos : todos as List<TodoItemDto>,
+      serverTimeStamp: serverTimeStamp == freezed
+          ? _value.serverTimeStamp
+          : serverTimeStamp as FieldValue,
+    ));
+  }
+}
+
+@JsonSerializable()
+
+/// @nodoc
+class _$_NoteDto extends _NoteDto {
+  const _$_NoteDto(
+      {@JsonKey(ignore: true) this.id,
+      @required this.body,
+      @required this.color,
+      @required this.todos,
+      @required @ServerTimestampConverter() this.serverTimeStamp})
+      : assert(body != null),
+        assert(color != null),
+        assert(todos != null),
+        assert(serverTimeStamp != null),
+        super._();
+
+  factory _$_NoteDto.fromJson(Map<String, dynamic> json) =>
+      _$_$_NoteDtoFromJson(json);
+
+  @override
+  @JsonKey(ignore: true)
+  final String id;
+  @override
+  final String body;
+  @override
+  final int color;
+  @override
+  final List<TodoItemDto> todos;
+  @override
+  @ServerTimestampConverter()
+  final FieldValue serverTimeStamp;
+
+  @override
+  String toString() {
+    return 'NoteDto(id: $id, body: $body, color: $color, todos: $todos, serverTimeStamp: $serverTimeStamp)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _NoteDto &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.body, body) ||
+                const DeepCollectionEquality().equals(other.body, body)) &&
+            (identical(other.color, color) ||
+                const DeepCollectionEquality().equals(other.color, color)) &&
+            (identical(other.todos, todos) ||
+                const DeepCollectionEquality().equals(other.todos, todos)) &&
+            (identical(other.serverTimeStamp, serverTimeStamp) ||
+                const DeepCollectionEquality()
+                    .equals(other.serverTimeStamp, serverTimeStamp)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(body) ^
+      const DeepCollectionEquality().hash(color) ^
+      const DeepCollectionEquality().hash(todos) ^
+      const DeepCollectionEquality().hash(serverTimeStamp);
+
+  @override
+  _$NoteDtoCopyWith<_NoteDto> get copyWith =>
+      __$NoteDtoCopyWithImpl<_NoteDto>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_NoteDtoToJson(this);
+  }
+}
+
+abstract class _NoteDto extends NoteDto {
+  const _NoteDto._() : super._();
+  const factory _NoteDto(
+          {@JsonKey(ignore: true) String id,
+          @required String body,
+          @required int color,
+          @required List<TodoItemDto> todos,
+          @required @ServerTimestampConverter() FieldValue serverTimeStamp}) =
+      _$_NoteDto;
+
+  factory _NoteDto.fromJson(Map<String, dynamic> json) = _$_NoteDto.fromJson;
+
+  @override
+  @JsonKey(ignore: true)
+  String get id;
+  @override
+  String get body;
+  @override
+  int get color;
+  @override
+  List<TodoItemDto> get todos;
+  @override
+  @ServerTimestampConverter()
+  FieldValue get serverTimeStamp;
+  @override
+  _$NoteDtoCopyWith<_NoteDto> get copyWith;
+}
+
 TodoItemDto _$TodoItemDtoFromJson(Map<String, dynamic> json) {
   return _TodoItemDto.fromJson(json);
 }
@@ -183,75 +414,4 @@ abstract class _TodoItemDto extends TodoItemDto {
   bool get done;
   @override
   _$TodoItemDtoCopyWith<_TodoItemDto> get copyWith;
-}
-
-/// @nodoc
-class _$NoteDtoTearOff {
-  const _$NoteDtoTearOff();
-
-// ignore: unused_element
-  _NoteDto call() {
-    return const _NoteDto();
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $NoteDto = _$NoteDtoTearOff();
-
-/// @nodoc
-mixin _$NoteDto {}
-
-/// @nodoc
-abstract class $NoteDtoCopyWith<$Res> {
-  factory $NoteDtoCopyWith(NoteDto value, $Res Function(NoteDto) then) =
-      _$NoteDtoCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$NoteDtoCopyWithImpl<$Res> implements $NoteDtoCopyWith<$Res> {
-  _$NoteDtoCopyWithImpl(this._value, this._then);
-
-  final NoteDto _value;
-  // ignore: unused_field
-  final $Res Function(NoteDto) _then;
-}
-
-/// @nodoc
-abstract class _$NoteDtoCopyWith<$Res> {
-  factory _$NoteDtoCopyWith(_NoteDto value, $Res Function(_NoteDto) then) =
-      __$NoteDtoCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$NoteDtoCopyWithImpl<$Res> extends _$NoteDtoCopyWithImpl<$Res>
-    implements _$NoteDtoCopyWith<$Res> {
-  __$NoteDtoCopyWithImpl(_NoteDto _value, $Res Function(_NoteDto) _then)
-      : super(_value, (v) => _then(v as _NoteDto));
-
-  @override
-  _NoteDto get _value => super._value as _NoteDto;
-}
-
-/// @nodoc
-class _$_NoteDto extends _NoteDto {
-  const _$_NoteDto() : super._();
-
-  @override
-  String toString() {
-    return 'NoteDto()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _NoteDto);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-}
-
-abstract class _NoteDto extends NoteDto {
-  const _NoteDto._() : super._();
-  const factory _NoteDto() = _$_NoteDto;
 }
