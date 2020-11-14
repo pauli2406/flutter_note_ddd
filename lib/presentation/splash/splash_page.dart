@@ -26,7 +26,7 @@ class SplashPage extends StatelessWidget {
             children: [
               const CircularProgressIndicator(),
               FloatingActionButton(onPressed: () {
-                context.bloc<AuthBloc>().add(const AuthEvent.signedOut());
+                context.watch<AuthBloc>().add(const AuthEvent.signedOut());
               })
             ],
           ),

@@ -50,10 +50,10 @@ class SignInForm extends StatelessWidget {
                 ),
                 autocorrect: false,
                 onChanged: (value) => context
-                    .bloc<SignInFormBloc>()
+                    .read<SignInFormBloc>()
                     .add(SignInFormEvent.emailChanged(value)),
                 validator: (_) => context
-                    .bloc<SignInFormBloc>()
+                    .read<SignInFormBloc>()
                     .state
                     .emailAddress
                     .value
@@ -77,10 +77,10 @@ class SignInForm extends StatelessWidget {
                 autocorrect: false,
                 obscureText: true,
                 onChanged: (value) => context
-                    .bloc<SignInFormBloc>()
+                    .read<SignInFormBloc>()
                     .add(SignInFormEvent.passwordChanged(value)),
                 validator: (_) =>
-                    context.bloc<SignInFormBloc>().state.password.value.fold(
+                    context.read<SignInFormBloc>().state.password.value.fold(
                           (failure) => failure.maybeMap(
                             auth: (value) => value.f.maybeMap(
                               shortPassword: (_) => 'Short Password',
@@ -97,7 +97,7 @@ class SignInForm extends StatelessWidget {
                   Expanded(
                     child: FlatButton(
                       onPressed: () {
-                        context.bloc<SignInFormBloc>().add(
+                        context.read<SignInFormBloc>().add(
                               const SignInFormEvent
                                   .signInWithEmailAndPasswordPressed(),
                             );
@@ -108,7 +108,7 @@ class SignInForm extends StatelessWidget {
                   Expanded(
                     child: FlatButton(
                       onPressed: () {
-                        context.bloc<SignInFormBloc>().add(
+                        context.read<SignInFormBloc>().add(
                               const SignInFormEvent
                                   .registerWithEmailAndPasswordPressed(),
                             );
@@ -120,7 +120,7 @@ class SignInForm extends StatelessWidget {
               ),
               RaisedButton(
                 onPressed: () {
-                  context.bloc<SignInFormBloc>().add(
+                  context.read<SignInFormBloc>().add(
                         const SignInFormEvent.signInWithGooglePressed(),
                       );
                 },
