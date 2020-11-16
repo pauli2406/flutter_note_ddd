@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neverForget/application/note/note_actor/note_actor_bloc.dart';
 import 'package:neverForget/application/note/note_watcher/note_watcher_bloc.dart';
 import 'package:neverForget/injection.dart';
+import 'package:neverForget/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
 import 'package:neverForget/presentation/routes/router.gr.dart';
 
 class NotesOverviewPage extends StatelessWidget {
@@ -48,27 +49,29 @@ class NotesOverviewPage extends StatelessWidget {
           }),
         ],
         child: Scaffold(
-            appBar: AppBar(
-              title: const Text('Notes'),
-              leading: IconButton(
-                icon: const Icon(Icons.exit_to_app),
-                onPressed: () {
-                  context.read<AuthBloc>().add(const AuthEvent.signedOut());
-                },
-              ),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.indeterminate_check_box),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-            floatingActionButton: FloatingActionButton(
+          appBar: AppBar(
+            title: const Text('Notes'),
+            leading: IconButton(
+              icon: const Icon(Icons.exit_to_app),
               onPressed: () {
-                // TODO navigate to NoteFormPage
+                context.read<AuthBloc>().add(const AuthEvent.signedOut());
               },
-              child: const Icon(Icons.add),
-            )),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.indeterminate_check_box),
+                onPressed: () {},
+              ),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              // TODO navigate to NoteFormPage
+            },
+            child: const Icon(Icons.add),
+          ),
+          body: NotesOverviewBodyWidget(),
+        ),
       ),
     );
   }
