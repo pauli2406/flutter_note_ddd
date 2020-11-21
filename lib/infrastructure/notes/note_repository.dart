@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/services.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
@@ -107,10 +106,10 @@ class NoteRepository implements INoteRepository {
 
       await userDoc.noteCollection.doc(noteId).delete();
       return right(unit);
-    } on PlatformException catch (e) {
-      if (e.message.contains('PERMISSION_DENIED')) {
+    } on FirebaseException catch (e) {
+      if (e.message.contains('permission-denied')) {
         return left(const NoteFailure.insufficientPermission());
-      } else if (e.message.contains('NOT_FOUND')) {
+      } else if (e.message.contains('not-found')) {
         return left(const NoteFailure.unableToUpdate());
       } else {
         return left(const NoteFailure.unexpected());

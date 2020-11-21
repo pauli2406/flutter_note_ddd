@@ -40,7 +40,7 @@ GetIt $initGetIt(
   gh.lazySingleton<INoteRepository>(
       () => NoteRepository(get<FirebaseFirestore>()));
   gh.factory<NoteActorBloc>(() => NoteActorBloc(get<INoteRepository>()));
-  gh.factory<NoteBlocBloc>(() => NoteBlocBloc(get<INoteRepository>()));
+  gh.factory<NoteFormBloc>(() => NoteFormBloc(get<INoteRepository>()));
   gh.factory<NoteWatcherBloc>(() => NoteWatcherBloc(get<INoteRepository>()));
   gh.factory<SignInFormBloc>(() => SignInFormBloc(get<IAuthFacade>()));
   gh.factory<AuthBloc>(() => AuthBloc(get<IAuthFacade>()));

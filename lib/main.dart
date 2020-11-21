@@ -4,11 +4,10 @@ import 'package:injectable/injectable.dart';
 import 'package:neverForget/injection.dart';
 import 'package:neverForget/presentation/core/app_widget.dart';
 
-// ignore: avoid_void_async
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   configureInjection(Environment.prod);
+  await Firebase.initializeApp();
   // Enable integration testing with the Flutter Driver extension.
   // See https://flutter.dev/testing/ for more info.
   //enableFlutterDriverExtension();

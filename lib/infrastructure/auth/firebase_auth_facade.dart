@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
@@ -11,7 +11,7 @@ import './firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
 class FireBaseAuthFacade implements IAuthFacade {
-  final auth.FirebaseAuth _firebaseAuth;
+  final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
   FireBaseAuthFacade(this._firebaseAuth, this._googleSignIn);
@@ -35,7 +35,7 @@ class FireBaseAuthFacade implements IAuthFacade {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: emailAddressString, password: passwordString);
       return right(unit);
-    } on auth.FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         return left(const AuthFailure.emailAlreadyInUse());
       } else if (e.code == 'operation-not-allowed') {
@@ -57,7 +57,7 @@ class FireBaseAuthFacade implements IAuthFacade {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: emailAddressString, password: passwordString);
       return right(unit);
-    } on auth.FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         return left(const AuthFailure.invalidEmailAndPasswordCombination());
       } else if (e.code == 'user-disabled') {
@@ -76,13 +76,13 @@ class FireBaseAuthFacade implements IAuthFacade {
         return left(const AuthFailure.cancelledByUser());
       }
       final googleAuthentication = await googleUser.authentication;
-      final authCredential = auth.GoogleAuthProvider.credential(
+      final authCredential = GoogleAuthProvider.credential(
           idToken: googleAuthentication.idToken,
           accessToken: googleAuthentication.accessToken);
 
       await _firebaseAuth.signInWithCredential(authCredential);
       return right(unit);
-    } on auth.FirebaseAuthException catch (_) {
+    } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverError());
     }
   }
