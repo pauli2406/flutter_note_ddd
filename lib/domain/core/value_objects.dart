@@ -37,23 +37,3 @@ abstract class ValueObject<T> {
     return value.fold((f) => throw UnexpectedValueError(f), id);
   }
 }
-
-class UniqueId extends ValueObject<String> {
-  @override
-  final Either<ValueFailure<String>, String> value;
-
-  factory UniqueId() {
-    return UniqueId._(
-      right(Uuid().v1()),
-    );
-  }
-
-  factory UniqueId.fromUniqueString(String uniqueId) {
-    assert(uniqueId != null);
-    return UniqueId._(
-      right(uniqueId),
-    );
-  }
-
-  const UniqueId._(this.value);
-}

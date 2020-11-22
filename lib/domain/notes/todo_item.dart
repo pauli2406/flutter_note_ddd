@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:neverForget/domain/core/failures.dart';
-import 'package:neverForget/domain/core/value_objects.dart';
 import 'package:neverForget/domain/notes/value_objects.dart';
+import 'package:uuid/uuid.dart';
 
 part 'todo_item.freezed.dart';
 
@@ -11,13 +11,13 @@ abstract class TodoItem implements _$TodoItem {
   const TodoItem._();
 
   const factory TodoItem({
-    @required UniqueId id,
+    @required String id,
     @required TodoName todoName,
     @required bool done,
   }) = _TodoItem;
 
   factory TodoItem.empty() => TodoItem(
-        id: UniqueId(),
+        id: Uuid().v1(),
         todoName: TodoName(''),
         done: false,
       );

@@ -5,7 +5,7 @@ import 'package:neverForget/domain/core/value_objects.dart';
 extension FirebaseUserDomainX on firebase.User {
   User toDomain() {
     return User(
-      id: UniqueId.fromUniqueString(uid),
+      id: uid,
     );
   }
 }

@@ -102,7 +102,7 @@ class NoteRepository implements INoteRepository {
   Future<Either<NoteFailure, Unit>> delete(Note note) async {
     try {
       final userDoc = await _fireStore.userDocument();
-      final noteId = note.id.getOrCrash();
+      final noteId = note.id;
 
       await userDoc.noteCollection.doc(noteId).delete();
       return right(unit);

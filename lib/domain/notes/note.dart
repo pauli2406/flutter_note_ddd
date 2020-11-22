@@ -5,6 +5,7 @@ import 'package:neverForget/domain/core/failures.dart';
 import 'package:neverForget/domain/core/value_objects.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/domain/notes/value_objects.dart';
+import 'package:uuid/uuid.dart';
 
 part 'note.freezed.dart';
 
@@ -13,14 +14,14 @@ abstract class Note implements _$Note {
   const Note._();
 
   const factory Note({
-    @required UniqueId id,
+    @required String id,
     @required NoteBody noteBody,
     @required NoteColor noteColor,
     @required List3<TodoItem> todos,
   }) = _Note;
 
   factory Note.empty() => Note(
-        id: UniqueId(),
+        id: Uuid().v1(),
         noteBody: NoteBody(''),
         noteColor: NoteColor(NoteColor.predefinedColors[0]),
         todos: List3(emptyList()),

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:neverForget/domain/core/value_objects.dart';
 import 'package:neverForget/domain/notes/note.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/domain/notes/value_objects.dart';
@@ -25,7 +24,7 @@ abstract class NoteDto implements _$NoteDto {
 
   factory NoteDto.fromDomain(Note note) {
     return NoteDto(
-      id: note.id.getOrCrash(),
+      id: note.id,
       body: note.noteBody.getOrCrash(),
       color: note.noteColor.getOrCrash().value,
       todos: note.todos
@@ -38,7 +37,7 @@ abstract class NoteDto implements _$NoteDto {
 
   Note toDomain() {
     return Note(
-        id: UniqueId.fromUniqueString(id),
+        id: id,
         noteBody: NoteBody(body),
         noteColor: NoteColor(Color(color)),
         todos: List3(
@@ -78,7 +77,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
 
   factory TodoItemDto.fromDomain(TodoItem todoItem) {
     return TodoItemDto(
-      id: todoItem.id.getOrCrash(),
+      id: todoItem.id,
       name: todoItem.todoName.getOrCrash(),
       done: todoItem.done,
     );
@@ -86,7 +85,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
 
   TodoItem toDomain() {
     return TodoItem(
-      id: UniqueId.fromUniqueString(id),
+      id: id,
       todoName: TodoName(name),
       done: done,
     );

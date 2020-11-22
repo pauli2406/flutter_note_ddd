@@ -15,9 +15,7 @@ class _$TodoItemTearOff {
 
 // ignore: unused_element
   _TodoItem call(
-      {@required UniqueId id,
-      @required TodoName todoName,
-      @required bool done}) {
+      {@required String id, @required TodoName todoName, @required bool done}) {
     return _TodoItem(
       id: id,
       todoName: todoName,
@@ -32,7 +30,7 @@ const $TodoItem = _$TodoItemTearOff();
 
 /// @nodoc
 mixin _$TodoItem {
-  UniqueId get id;
+  String get id;
   TodoName get todoName;
   bool get done;
 
@@ -43,7 +41,7 @@ mixin _$TodoItem {
 abstract class $TodoItemCopyWith<$Res> {
   factory $TodoItemCopyWith(TodoItem value, $Res Function(TodoItem) then) =
       _$TodoItemCopyWithImpl<$Res>;
-  $Res call({UniqueId id, TodoName todoName, bool done});
+  $Res call({String id, TodoName todoName, bool done});
 }
 
 /// @nodoc
@@ -61,7 +59,7 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
     Object done = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       todoName: todoName == freezed ? _value.todoName : todoName as TodoName,
       done: done == freezed ? _value.done : done as bool,
     ));
@@ -73,7 +71,7 @@ abstract class _$TodoItemCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   factory _$TodoItemCopyWith(_TodoItem value, $Res Function(_TodoItem) then) =
       __$TodoItemCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id, TodoName todoName, bool done});
+  $Res call({String id, TodoName todoName, bool done});
 }
 
 /// @nodoc
@@ -92,7 +90,7 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
     Object done = freezed,
   }) {
     return _then(_TodoItem(
-      id: id == freezed ? _value.id : id as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       todoName: todoName == freezed ? _value.todoName : todoName as TodoName,
       done: done == freezed ? _value.done : done as bool,
     ));
@@ -109,7 +107,7 @@ class _$_TodoItem extends _TodoItem {
         super._();
 
   @override
-  final UniqueId id;
+  final String id;
   @override
   final TodoName todoName;
   @override
@@ -148,12 +146,12 @@ class _$_TodoItem extends _TodoItem {
 abstract class _TodoItem extends TodoItem {
   const _TodoItem._() : super._();
   const factory _TodoItem(
-      {@required UniqueId id,
+      {@required String id,
       @required TodoName todoName,
       @required bool done}) = _$_TodoItem;
 
   @override
-  UniqueId get id;
+  String get id;
   @override
   TodoName get todoName;
   @override

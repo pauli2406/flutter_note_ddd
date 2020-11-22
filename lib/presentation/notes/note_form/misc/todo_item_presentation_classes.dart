@@ -4,6 +4,7 @@ import 'package:kt_dart/collection.dart';
 import 'package:neverForget/domain/core/value_objects.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/domain/notes/value_objects.dart';
+import 'package:uuid/uuid.dart';
 
 part 'todo_item_presentation_classes.freezed.dart';
 
@@ -16,13 +17,13 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
   const TodoItemPrimitive._();
 
   const factory TodoItemPrimitive({
-    @required UniqueId id,
+    @required String id,
     @required String name,
     @required bool done,
   }) = _TodoItemPrimitive;
 
   factory TodoItemPrimitive.empty() =>
-      TodoItemPrimitive(id: UniqueId(), name: '', done: false);
+      TodoItemPrimitive(id: Uuid().v1(), name: '', done: false);
 
   factory TodoItemPrimitive.fromDomain(TodoItem todoItem) {
     return TodoItemPrimitive(

@@ -15,7 +15,7 @@ class _$NoteTearOff {
 
 // ignore: unused_element
   _Note call(
-      {@required UniqueId id,
+      {@required String id,
       @required NoteBody noteBody,
       @required NoteColor noteColor,
       @required List3<TodoItem> todos}) {
@@ -34,7 +34,7 @@ const $Note = _$NoteTearOff();
 
 /// @nodoc
 mixin _$Note {
-  UniqueId get id;
+  String get id;
   NoteBody get noteBody;
   NoteColor get noteColor;
   List3<TodoItem> get todos;
@@ -47,7 +47,7 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res>;
   $Res call(
-      {UniqueId id,
+      {String id,
       NoteBody noteBody,
       NoteColor noteColor,
       List3<TodoItem> todos});
@@ -69,7 +69,7 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
     Object todos = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       noteBody: noteBody == freezed ? _value.noteBody : noteBody as NoteBody,
       noteColor:
           noteColor == freezed ? _value.noteColor : noteColor as NoteColor,
@@ -84,7 +84,7 @@ abstract class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {UniqueId id,
+      {String id,
       NoteBody noteBody,
       NoteColor noteColor,
       List3<TodoItem> todos});
@@ -107,7 +107,7 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
     Object todos = freezed,
   }) {
     return _then(_Note(
-      id: id == freezed ? _value.id : id as UniqueId,
+      id: id == freezed ? _value.id : id as String,
       noteBody: noteBody == freezed ? _value.noteBody : noteBody as NoteBody,
       noteColor:
           noteColor == freezed ? _value.noteColor : noteColor as NoteColor,
@@ -130,7 +130,7 @@ class _$_Note extends _Note {
         super._();
 
   @override
-  final UniqueId id;
+  final String id;
   @override
   final NoteBody noteBody;
   @override
@@ -175,13 +175,13 @@ class _$_Note extends _Note {
 abstract class _Note extends Note {
   const _Note._() : super._();
   const factory _Note(
-      {@required UniqueId id,
+      {@required String id,
       @required NoteBody noteBody,
       @required NoteColor noteColor,
       @required List3<TodoItem> todos}) = _$_Note;
 
   @override
-  UniqueId get id;
+  String get id;
   @override
   NoteBody get noteBody;
   @override

@@ -14,7 +14,7 @@ class _$UserTearOff {
   const _$UserTearOff();
 
 // ignore: unused_element
-  _User call({@required UniqueId id}) {
+  _User call({@required String id}) {
     return _User(
       id: id,
     );
@@ -27,7 +27,7 @@ const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  UniqueId get id;
+  String get id;
 
   $UserCopyWith<User> get copyWith;
 }
@@ -36,7 +36,7 @@ mixin _$User {
 abstract class $UserCopyWith<$Res> {
   factory $UserCopyWith(User value, $Res Function(User) then) =
       _$UserCopyWithImpl<$Res>;
-  $Res call({UniqueId id});
+  $Res call({String id});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object id = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as UniqueId,
+      id: id == freezed ? _value.id : id as String,
     ));
   }
 }
@@ -62,7 +62,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) then) =
       __$UserCopyWithImpl<$Res>;
   @override
-  $Res call({UniqueId id});
+  $Res call({String id});
 }
 
 /// @nodoc
@@ -79,7 +79,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object id = freezed,
   }) {
     return _then(_User(
-      id: id == freezed ? _value.id : id as UniqueId,
+      id: id == freezed ? _value.id : id as String,
     ));
   }
 }
@@ -89,7 +89,7 @@ class _$_User implements _User {
   const _$_User({@required this.id}) : assert(id != null);
 
   @override
-  final UniqueId id;
+  final String id;
 
   @override
   String toString() {
@@ -114,10 +114,10 @@ class _$_User implements _User {
 }
 
 abstract class _User implements User {
-  const factory _User({@required UniqueId id}) = _$_User;
+  const factory _User({@required String id}) = _$_User;
 
   @override
-  UniqueId get id;
+  String get id;
   @override
   _$UserCopyWith<_User> get copyWith;
 }
