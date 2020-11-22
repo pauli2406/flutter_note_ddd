@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neverForget/application/auth/auth_bloc.dart';
 import 'package:neverForget/application/auth/sign_in_form/sign_in_form_bloc.dart';
+import 'package:neverForget/domain/core/value_validators.dart';
 import 'package:neverForget/presentation/routes/router.gr.dart';
 
 class SignInForm extends StatelessWidget {
@@ -50,47 +51,35 @@ class SignInForm extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               TextFormField(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.email),
-                  labelText: "Email",
-                ),
-                autocorrect: false,
-                onChanged: (value) => context
-                    .read<SignInFormBloc>()
-                    .add(SignInFormEvent.emailChanged(value)),
-                validator: (_) => context
-                    .read<SignInFormBloc>()
-                    .state
-                    .emailAddress
-                    .value
-                    .fold(
-                      (failure) => failure.maybeMap(
-                        invalidEmail: (_) => 'Invalid Email',
-                        orElse: () => null,
-                      ),
-                      (_) => null,
-                    ),
-              ),
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.email),
+                    labelText: "Email",
+                  ),
+                  autocorrect: false,
+                  onChanged: (value) => context
+                      .read<SignInFormBloc>()
+                      .add(SignInFormEvent.emailChanged(value)),
+                  validator: (_) => validateEmailAddress(
+                              context.read<SignInFormBloc>().state.emailAddress)
+                          .isRight()
+                      ? null
+                      : 'Invalid Email'),
               const SizedBox(height: 8),
               TextFormField(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.lock),
-                  labelText: "Password",
-                ),
-                autocorrect: false,
-                obscureText: true,
-                onChanged: (value) => context
-                    .read<SignInFormBloc>()
-                    .add(SignInFormEvent.passwordChanged(value)),
-                validator: (_) =>
-                    context.read<SignInFormBloc>().state.password.value.fold(
-                          (failure) => failure.maybeMap(
-                            shortPassword: (_) => 'Short Password',
-                            orElse: () => null,
-                          ),
-                          (_) => null,
-                        ),
-              ),
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
+                    labelText: "Password",
+                  ),
+                  autocorrect: false,
+                  obscureText: true,
+                  onChanged: (value) => context
+                      .read<SignInFormBloc>()
+                      .add(SignInFormEvent.passwordChanged(value)),
+                  validator: (_) => validatePassword(
+                              context.read<SignInFormBloc>().state.password)
+                          .isRight()
+                      ? null
+                      : 'Short Password'),
               const SizedBox(height: 8),
               Row(
                 children: [

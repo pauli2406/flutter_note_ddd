@@ -6,7 +6,7 @@ import 'package:neverForget/domain/auth/auth_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:neverForget/domain/auth/i_auth_facade.dart';
 import 'package:neverForget/domain/auth/user.dart';
-import 'package:neverForget/domain/auth/value_objects.dart';
+import 'package:neverForget/domain/core/failures.dart';
 import './firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -26,14 +26,10 @@ class FireBaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword(
-      {@required EmailAddress emailAddress,
-      @required Password password}) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
-
+      {@required String emailAddress, @required String password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
+          email: emailAddress, password: password);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -48,14 +44,10 @@ class FireBaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmailAndPassword(
-      {@required EmailAddress emailAddress,
-      @required Password password}) async {
-    final emailAddressString = emailAddress.getOrCrash();
-    final passwordString = password.getOrCrash();
-
+      {@required String emailAddress, @required String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddressString, password: passwordString);
+          email: emailAddress, password: password);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
@@ -84,6 +76,24 @@ class FireBaseAuthFacade implements IAuthFacade {
       return right(unit);
     } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverError());
+    }
+  }
+
+  Either<ValueFailure<String>, String> validateEmailAddress(String input) {
+    const emailRegex =
+        r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
+    if (RegExp(emailRegex).hasMatch(input)) {
+      return right(input);
+    } else {
+      return left(ValueFailure.invalidEmail(failedValue: input));
+    }
+  }
+
+  Either<ValueFailure<String>, String> validatePassword(String input) {
+    if (input.length >= 6) {
+      return right(input);
+    } else {
+      return left(ValueFailure.shortPassword(failedValue: input));
     }
   }
 }
