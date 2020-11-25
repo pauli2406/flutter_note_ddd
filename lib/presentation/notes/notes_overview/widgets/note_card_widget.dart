@@ -15,7 +15,7 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: note.noteColor.getOrCrash(),
+      color: note.noteColor,
       child: InkWell(
         onTap: () {
           ExtendedNavigator.of(context).pushNoteFormPage(editedNote: note);

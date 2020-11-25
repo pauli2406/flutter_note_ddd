@@ -31,13 +31,10 @@ class ColorField extends StatelessWidget {
                   color: itemColor,
                   elevation: 4,
                   shape: CircleBorder(
-                      side: state.note.noteColor.value.fold(
-                    (_) => BorderSide.none,
-                    (color) => color == itemColor
+                    side: state.note.noteColor == itemColor
                         ? const BorderSide(width: 1.5)
                         : BorderSide.none,
-                  ) // BorderSide(width: 1.5),
-                      ),
+                  ),
                   child: const SizedBox(
                     width: 50,
                     height: 50,

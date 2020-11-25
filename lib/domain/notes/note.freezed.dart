@@ -17,7 +17,7 @@ class _$NoteTearOff {
   _Note call(
       {@required String id,
       @required NoteBody noteBody,
-      @required NoteColor noteColor,
+      @required Color noteColor,
       @required List3<TodoItem> todos}) {
     return _Note(
       id: id,
@@ -36,7 +36,7 @@ const $Note = _$NoteTearOff();
 mixin _$Note {
   String get id;
   NoteBody get noteBody;
-  NoteColor get noteColor;
+  Color get noteColor;
   List3<TodoItem> get todos;
 
   $NoteCopyWith<Note> get copyWith;
@@ -47,10 +47,7 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      NoteBody noteBody,
-      NoteColor noteColor,
-      List3<TodoItem> todos});
+      {String id, NoteBody noteBody, Color noteColor, List3<TodoItem> todos});
 }
 
 /// @nodoc
@@ -71,8 +68,7 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       noteBody: noteBody == freezed ? _value.noteBody : noteBody as NoteBody,
-      noteColor:
-          noteColor == freezed ? _value.noteColor : noteColor as NoteColor,
+      noteColor: noteColor == freezed ? _value.noteColor : noteColor as Color,
       todos: todos == freezed ? _value.todos : todos as List3<TodoItem>,
     ));
   }
@@ -84,10 +80,7 @@ abstract class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      NoteBody noteBody,
-      NoteColor noteColor,
-      List3<TodoItem> todos});
+      {String id, NoteBody noteBody, Color noteColor, List3<TodoItem> todos});
 }
 
 /// @nodoc
@@ -109,8 +102,7 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
     return _then(_Note(
       id: id == freezed ? _value.id : id as String,
       noteBody: noteBody == freezed ? _value.noteBody : noteBody as NoteBody,
-      noteColor:
-          noteColor == freezed ? _value.noteColor : noteColor as NoteColor,
+      noteColor: noteColor == freezed ? _value.noteColor : noteColor as Color,
       todos: todos == freezed ? _value.todos : todos as List3<TodoItem>,
     ));
   }
@@ -134,7 +126,7 @@ class _$_Note extends _Note {
   @override
   final NoteBody noteBody;
   @override
-  final NoteColor noteColor;
+  final Color noteColor;
   @override
   final List3<TodoItem> todos;
 
@@ -177,7 +169,7 @@ abstract class _Note extends Note {
   const factory _Note(
       {@required String id,
       @required NoteBody noteBody,
-      @required NoteColor noteColor,
+      @required Color noteColor,
       @required List3<TodoItem> todos}) = _$_Note;
 
   @override
@@ -185,7 +177,7 @@ abstract class _Note extends Note {
   @override
   NoteBody get noteBody;
   @override
-  NoteColor get noteColor;
+  Color get noteColor;
   @override
   List3<TodoItem> get todos;
   @override
