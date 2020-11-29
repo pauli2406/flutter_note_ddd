@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neverForget/application/note/note_form/note_form_bloc.dart';
-import 'package:neverForget/domain/notes/value_objects.dart';
+import 'package:neverForget/domain/notes/note_color.dart';
 
 class ColorField extends StatelessWidget {
   const ColorField({

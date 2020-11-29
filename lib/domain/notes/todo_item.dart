@@ -1,8 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:neverForget/domain/core/failures.dart';
-import 'package:neverForget/domain/notes/value_objects.dart';
+import 'package:neverForget/domain/core/value_validators.dart';
 import 'package:uuid/uuid.dart';
+import 'package:neverForget/domain/notes/note.dart';
 
 part 'todo_item.freezed.dart';
 
@@ -12,20 +13,23 @@ abstract class TodoItem implements _$TodoItem {
 
   const factory TodoItem({
     @required String id,
-    @required TodoName todoName,
+    @required String todoName,
     @required bool done,
   }) = _TodoItem;
 
+  static const maxLength = 30;
+
   factory TodoItem.empty() => TodoItem(
         id: Uuid().v1(),
-        todoName: TodoName(''),
+        todoName: '',
         done: false,
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
-    return todoName.failureOrUnit.fold(
-      (f) => some(f),
-      (_) => none(),
-    );
+    return validateMaxStringLength(todoName, maxLength)
+        .flatMap(validateStringNotEmpty)
+        .flatMap(validateSingleLine)
+        .failureOrUnit()
+        .fold((f) => some(f), (_) => none());
   }
 }

@@ -30,7 +30,7 @@ class NoteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                note.noteBody.getOrCrash(),
+                note.noteBody,
                 style: const TextStyle(fontSize: 18),
               ),
               if (note.todos.length > 0) ...[
@@ -63,7 +63,7 @@ class NoteCard extends StatelessWidget {
         return AlertDialog(
           title: const Text('Selected Note:'),
           content: Text(
-            note.noteBody.getOrCrash(),
+            note.noteBody,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
@@ -105,7 +105,7 @@ class TodoDisplay extends StatelessWidget {
             Icons.check_box_outline_blank,
             color: Theme.of(context).disabledColor,
           ),
-        Text(todo.todoName.getOrCrash()),
+        Text(todo.todoName),
       ],
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
-import 'package:neverForget/domain/core/value_objects.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/domain/notes/value_objects.dart';
 import 'package:uuid/uuid.dart';
@@ -28,7 +27,7 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
   factory TodoItemPrimitive.fromDomain(TodoItem todoItem) {
     return TodoItemPrimitive(
       id: todoItem.id,
-      name: todoItem.todoName.getOrCrash(),
+      name: todoItem.todoName,
       done: todoItem.done,
     );
   }
@@ -36,7 +35,7 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
   TodoItem toDomain() {
     return TodoItem(
       id: id,
-      todoName: TodoName(name),
+      todoName: name,
       done: done,
     );
   }

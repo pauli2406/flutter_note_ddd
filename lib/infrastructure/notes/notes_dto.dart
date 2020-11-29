@@ -25,7 +25,7 @@ abstract class NoteDto implements _$NoteDto {
   factory NoteDto.fromDomain(Note note) {
     return NoteDto(
       id: note.id,
-      body: note.noteBody.getOrCrash(),
+      body: note.noteBody,
       color: note.noteColor.value,
       todos: note.todos
           .getOrCrash()
@@ -38,7 +38,7 @@ abstract class NoteDto implements _$NoteDto {
   Note toDomain() {
     return Note(
         id: id,
-        noteBody: NoteBody(body),
+        noteBody: body,
         noteColor: Color(color),
         todos: List3(
           todos.map((dto) => dto.toDomain()).toImmutableList(),
@@ -78,7 +78,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
   factory TodoItemDto.fromDomain(TodoItem todoItem) {
     return TodoItemDto(
       id: todoItem.id,
-      name: todoItem.todoName.getOrCrash(),
+      name: todoItem.todoName,
       done: todoItem.done,
     );
   }
@@ -86,7 +86,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
   TodoItem toDomain() {
     return TodoItem(
       id: id,
-      todoName: TodoName(name),
+      todoName: name,
       done: done,
     );
   }

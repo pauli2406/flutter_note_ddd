@@ -15,7 +15,7 @@ class _$TodoItemTearOff {
 
 // ignore: unused_element
   _TodoItem call(
-      {@required String id, @required TodoName todoName, @required bool done}) {
+      {@required String id, @required String todoName, @required bool done}) {
     return _TodoItem(
       id: id,
       todoName: todoName,
@@ -31,7 +31,7 @@ const $TodoItem = _$TodoItemTearOff();
 /// @nodoc
 mixin _$TodoItem {
   String get id;
-  TodoName get todoName;
+  String get todoName;
   bool get done;
 
   $TodoItemCopyWith<TodoItem> get copyWith;
@@ -41,7 +41,7 @@ mixin _$TodoItem {
 abstract class $TodoItemCopyWith<$Res> {
   factory $TodoItemCopyWith(TodoItem value, $Res Function(TodoItem) then) =
       _$TodoItemCopyWithImpl<$Res>;
-  $Res call({String id, TodoName todoName, bool done});
+  $Res call({String id, String todoName, bool done});
 }
 
 /// @nodoc
@@ -60,7 +60,7 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
-      todoName: todoName == freezed ? _value.todoName : todoName as TodoName,
+      todoName: todoName == freezed ? _value.todoName : todoName as String,
       done: done == freezed ? _value.done : done as bool,
     ));
   }
@@ -71,7 +71,7 @@ abstract class _$TodoItemCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   factory _$TodoItemCopyWith(_TodoItem value, $Res Function(_TodoItem) then) =
       __$TodoItemCopyWithImpl<$Res>;
   @override
-  $Res call({String id, TodoName todoName, bool done});
+  $Res call({String id, String todoName, bool done});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
   }) {
     return _then(_TodoItem(
       id: id == freezed ? _value.id : id as String,
-      todoName: todoName == freezed ? _value.todoName : todoName as TodoName,
+      todoName: todoName == freezed ? _value.todoName : todoName as String,
       done: done == freezed ? _value.done : done as bool,
     ));
   }
@@ -109,7 +109,7 @@ class _$_TodoItem extends _TodoItem {
   @override
   final String id;
   @override
-  final TodoName todoName;
+  final String todoName;
   @override
   final bool done;
 
@@ -147,13 +147,13 @@ abstract class _TodoItem extends TodoItem {
   const _TodoItem._() : super._();
   const factory _TodoItem(
       {@required String id,
-      @required TodoName todoName,
+      @required String todoName,
       @required bool done}) = _$_TodoItem;
 
   @override
   String get id;
   @override
-  TodoName get todoName;
+  String get todoName;
   @override
   bool get done;
   @override
