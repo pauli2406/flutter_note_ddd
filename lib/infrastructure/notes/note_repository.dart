@@ -49,7 +49,7 @@ class NoteRepository implements INoteRepository {
               snapshot.docs.map((doc) => NoteDto.fromFirestore(doc).toDomain()),
         )
         .map((notes) => right<NoteFailure, KtList<Note>>(notes
-            .where((note) => note.todos.getOrCrash().any((todo) => !todo.done))
+            .where((note) => note.todos.any((todo) => !todo.done))
             .toImmutableList()))
         .handleError(
       (e) {

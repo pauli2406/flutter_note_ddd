@@ -18,7 +18,7 @@ class _$NoteTearOff {
       {@required String id,
       @required String noteBody,
       @required Color noteColor,
-      @required List3<TodoItem> todos}) {
+      @required KtList<TodoItem> todos}) {
     return _Note(
       id: id,
       noteBody: noteBody,
@@ -37,7 +37,7 @@ mixin _$Note {
   String get id;
   String get noteBody;
   Color get noteColor;
-  List3<TodoItem> get todos;
+  KtList<TodoItem> get todos;
 
   $NoteCopyWith<Note> get copyWith;
 }
@@ -47,7 +47,7 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res>;
   $Res call(
-      {String id, String noteBody, Color noteColor, List3<TodoItem> todos});
+      {String id, String noteBody, Color noteColor, KtList<TodoItem> todos});
 }
 
 /// @nodoc
@@ -69,7 +69,7 @@ class _$NoteCopyWithImpl<$Res> implements $NoteCopyWith<$Res> {
       id: id == freezed ? _value.id : id as String,
       noteBody: noteBody == freezed ? _value.noteBody : noteBody as String,
       noteColor: noteColor == freezed ? _value.noteColor : noteColor as Color,
-      todos: todos == freezed ? _value.todos : todos as List3<TodoItem>,
+      todos: todos == freezed ? _value.todos : todos as KtList<TodoItem>,
     ));
   }
 }
@@ -80,7 +80,7 @@ abstract class _$NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$NoteCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id, String noteBody, Color noteColor, List3<TodoItem> todos});
+      {String id, String noteBody, Color noteColor, KtList<TodoItem> todos});
 }
 
 /// @nodoc
@@ -103,7 +103,7 @@ class __$NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res>
       id: id == freezed ? _value.id : id as String,
       noteBody: noteBody == freezed ? _value.noteBody : noteBody as String,
       noteColor: noteColor == freezed ? _value.noteColor : noteColor as Color,
-      todos: todos == freezed ? _value.todos : todos as List3<TodoItem>,
+      todos: todos == freezed ? _value.todos : todos as KtList<TodoItem>,
     ));
   }
 }
@@ -128,7 +128,7 @@ class _$_Note extends _Note {
   @override
   final Color noteColor;
   @override
-  final List3<TodoItem> todos;
+  final KtList<TodoItem> todos;
 
   @override
   String toString() {
@@ -170,7 +170,7 @@ abstract class _Note extends Note {
       {@required String id,
       @required String noteBody,
       @required Color noteColor,
-      @required List3<TodoItem> todos}) = _$_Note;
+      @required KtList<TodoItem> todos}) = _$_Note;
 
   @override
   String get id;
@@ -179,7 +179,7 @@ abstract class _Note extends Note {
   @override
   Color get noteColor;
   @override
-  List3<TodoItem> get todos;
+  KtList<TodoItem> get todos;
   @override
   _$NoteCopyWith<_Note> get copyWith;
 }

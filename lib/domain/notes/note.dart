@@ -31,14 +31,14 @@ abstract class Note implements _$Note {
     @required String id,
     @required String noteBody,
     @required Color noteColor,
-    @required List3<TodoItem> todos,
+    @required KtList<TodoItem> todos,
   }) = _Note;
 
   factory Note.empty() => Note(
         id: Uuid().v1(),
         noteBody: '',
         noteColor: NoteColor.predefinedColors[0],
-        todos: List3(emptyList()),
+        todos: emptyList(),
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
@@ -46,10 +46,9 @@ abstract class Note implements _$Note {
     return validateMaxStringLength(noteBody, maxLength)
         .flatMap(validateStringNotEmpty)
         .failureOrUnit()
-        .andThen(todos.failureOrUnit)
+        .andThen(validateMaxListLength(todos, 3).failureOrUnit())
         .andThen(
           todos
-              .getOrCrash()
               // Getting the failureOption from the TodoItem ENTITY - NOT a failureOrUnit from a VALUE OBJECT
               .map((todoItem) => todoItem.failureOption)
               .filter((o) => o.isSome())

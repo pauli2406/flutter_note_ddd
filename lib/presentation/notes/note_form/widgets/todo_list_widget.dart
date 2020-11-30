@@ -6,10 +6,13 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:neverForget/application/note/note_form/note_form_bloc.dart';
+import 'package:neverForget/domain/core/value_validators.dart';
+import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/domain/notes/value_objects.dart';
 import 'package:neverForget/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 import 'package:provider/provider.dart';
 import 'package:neverForget/presentation/notes/note_form/misc/build_context_x.dart';
+import 'package:neverForget/presentation/core/list_extensions.dart';
 
 class TodoList extends StatelessWidget {
   const TodoList({
@@ -19,9 +22,9 @@ class TodoList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<NoteFormBloc, NoteFormState>(
-      listenWhen: (p, c) => p.note.todos.isFull != c.note.todos.isFull,
+      listenWhen: (p, c) => p.note.todos.isFull() != c.note.todos.isFull(),
       listener: (context, state) {
-        if (state.note.todos.isFull) {
+        if (state.note.todos.isFull()) {
           FlushbarHelper.createAction(
             message: 'Want longer lists? Activate premium 🤩',
             button: FlatButton(
@@ -150,7 +153,7 @@ class TodoTile extends HookWidget {
                   border: InputBorder.none,
                   counterText: '',
                 ),
-                maxLength: TodoName.maxLength,
+                maxLength: TodoItem.maxLength,
                 onChanged: (value) {
                   context.formTodos = context.formTodos.map(
                     (listTodo) => listTodo == todo
@@ -162,34 +165,20 @@ class TodoTile extends HookWidget {
                       .add(NoteFormEvent.todosChanged(context.formTodos));
                 },
                 validator: (_) {
-                  return context
-                      .read<NoteFormBloc>()
-                      .state
-                      .note
-                      .todos
-                      .value
+                  return validateMaxListLength(
+                          context.read<NoteFormBloc>().state.note.todos,
+                          List3.maxLength)
                       .fold(
-                          (f) => null,
-                          (todoList) => todoList[index]
-                              .failureOption
-                              .getOrElse(() => null)
-                              .maybeMap(
-                                  exceedingLength: (_) => 'Too long',
-                                  empty: (_) => 'Cannot be empty',
-                                  multiline: (_) =>
-                                      'Has to be in a single line',
-                                  orElse: () => null));
-
-                  //    .todoName.value.fold(
-                  //         (f) => f.maybeMap(
-                  // exceedingLength: (_) => 'Too long',
-                  // empty: (_) => 'Cannot be empty',
-                  // multiline: (_) =>
-                  //     'Has to be in a single line',
-                  // orElse: () => null),
-                  //         (_) => null,
-                  //       ),
-                  // );
+                    (f) => null,
+                    (todoList) => todoList[index].failureOption.fold(
+                          () => null,
+                          (a) => a.maybeMap(
+                              exceedingLength: (_) => 'Too long',
+                              empty: (_) => 'Cannot be empty',
+                              multiline: (_) => 'Has to be in a single line',
+                              orElse: () => null),
+                        ),
+                  );
                 },
               ),
             ),

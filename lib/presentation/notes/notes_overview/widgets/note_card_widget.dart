@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:neverForget/application/note/note_actor/note_actor_bloc.dart';
 import 'package:neverForget/domain/notes/note.dart';
-import 'package:kt_dart/collection.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/presentation/routes/router.gr.dart';
 
@@ -33,19 +32,16 @@ class NoteCard extends StatelessWidget {
                 note.noteBody,
                 style: const TextStyle(fontSize: 18),
               ),
-              if (note.todos.length > 0) ...[
+              if (note.todos.size > 0) ...[
                 const SizedBox(height: 4),
                 Wrap(
                   spacing: 8,
                   children: [
-                    ...note.todos
-                        .getOrCrash()
-                        .map(
+                    ...note.todos.asList().map(
                           (todo) => TodoDisplay(
                             todo: todo,
                           ),
-                        )
-                        .iter,
+                        ),
                   ],
                 ),
               ]

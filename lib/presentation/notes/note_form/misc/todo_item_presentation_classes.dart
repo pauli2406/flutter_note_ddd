@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
-import 'package:neverForget/domain/notes/value_objects.dart';
 import 'package:uuid/uuid.dart';
 
 part 'todo_item_presentation_classes.freezed.dart';

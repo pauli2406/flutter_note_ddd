@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kt_dart/kt.dart';
-import 'package:neverForget/domain/core/value_validators.dart';
 import 'package:neverForget/domain/notes/i_note_repository.dart';
 import 'package:neverForget/domain/notes/note.dart';
 import 'package:neverForget/domain/notes/note_failure.dart';
@@ -46,9 +45,7 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
     }, todosChanged: (e) async* {
       yield state.copyWith(
         note: state.note.copyWith(
-          todos: List3(
-            e.todos.map((primitive) => primitive.toDomain()),
-          ),
+          todos: e.todos.map((primitive) => primitive.toDomain()),
         ),
         saveFailureOrSuccessOption: none(),
       );

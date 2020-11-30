@@ -28,7 +28,6 @@ abstract class NoteDto implements _$NoteDto {
       body: note.noteBody,
       color: note.noteColor.value,
       todos: note.todos
-          .getOrCrash()
           .map((todoItem) => TodoItemDto.fromDomain(todoItem))
           .asList(),
       serverTimeStamp: FieldValue.serverTimestamp(),
@@ -37,12 +36,11 @@ abstract class NoteDto implements _$NoteDto {
 
   Note toDomain() {
     return Note(
-        id: id,
-        noteBody: body,
-        noteColor: Color(color),
-        todos: List3(
-          todos.map((dto) => dto.toDomain()).toImmutableList(),
-        ));
+      id: id,
+      noteBody: body,
+      noteColor: Color(color),
+      todos: todos.map((todo) => todo.toDomain()).toImmutableList(),
+    );
   }
 
   factory NoteDto.fromJson(Map<String, dynamic> json) =>
