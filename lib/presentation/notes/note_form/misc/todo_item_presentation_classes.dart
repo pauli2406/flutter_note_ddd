@@ -6,6 +6,10 @@ import 'package:uuid/uuid.dart';
 
 part 'todo_item_presentation_classes.freezed.dart';
 
+class TodoListProperties {
+  static const maxLength = 3;
+}
+
 class FormTodos extends ValueNotifier<KtList<TodoItemPrimitive>> {
   FormTodos() : super(emptyList<TodoItemPrimitive>());
 }

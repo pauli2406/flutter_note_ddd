@@ -6,7 +6,7 @@ import 'package:neverForget/domain/core/failures.dart';
 import 'package:neverForget/domain/core/value_validators.dart';
 import 'package:neverForget/domain/notes/note_color.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
-import 'package:neverForget/domain/notes/value_objects.dart';
+import 'package:neverForget/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 import 'package:uuid/uuid.dart';
 
 part 'note.freezed.dart';
@@ -46,7 +46,8 @@ abstract class Note implements _$Note {
     return validateMaxStringLength(noteBody, maxLength)
         .flatMap(validateStringNotEmpty)
         .failureOrUnit()
-        .andThen(validateMaxListLength(todos, 3).failureOrUnit())
+        .andThen(validateMaxListLength(todos, TodoListProperties.maxLength)
+            .failureOrUnit())
         .andThen(
           todos
               // Getting the failureOption from the TodoItem ENTITY - NOT a failureOrUnit from a VALUE OBJECT

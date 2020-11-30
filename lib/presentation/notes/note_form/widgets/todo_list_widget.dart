@@ -8,7 +8,6 @@ import 'package:kt_dart/collection.dart';
 import 'package:neverForget/application/note/note_form/note_form_bloc.dart';
 import 'package:neverForget/domain/core/value_validators.dart';
 import 'package:neverForget/domain/notes/todo_item.dart';
-import 'package:neverForget/domain/notes/value_objects.dart';
 import 'package:neverForget/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 import 'package:provider/provider.dart';
 import 'package:neverForget/presentation/notes/note_form/misc/build_context_x.dart';
@@ -167,7 +166,7 @@ class TodoTile extends HookWidget {
                 validator: (_) {
                   return validateMaxListLength(
                           context.read<NoteFormBloc>().state.note.todos,
-                          List3.maxLength)
+                          TodoListProperties.maxLength)
                       .fold(
                     (f) => null,
                     (todoList) => todoList[index].failureOption.fold(
