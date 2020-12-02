@@ -9,8 +9,8 @@ import 'package:kt_dart/kt.dart';
 import 'package:neverForget/domain/notes/i_note_repository.dart';
 import 'package:neverForget/domain/notes/note.dart';
 import 'package:neverForget/domain/notes/note_failure.dart';
+import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/domain/notes/value_transformers.dart';
-import 'package:neverForget/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
 
 part 'note_form_event.dart';
 part 'note_form_state.dart';
@@ -44,16 +44,13 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
     }, todosChanged: (e) async* {
       yield state.copyWith(
         note: state.note.copyWith(
-          todos: e.todos.map((primitive) => primitive.toDomain()),
+          todos: e.todos,
         ),
         saveFailureOrSuccessOption: none(),
       );
     }, saved: (e) async* {
       Either<NoteFailure, Unit> failureOrSuccess;
 
-      // if (validateStringNotEmpty(state.note.noteBody).isRight() &&
-      //     validateMaxStringLength(state.note.noteBody, Note.maxLength)
-      //         .isRight()) {
       yield state.copyWith(
         isSaving: true,
         saveFailureOrSuccessOption: none(),
@@ -70,8 +67,6 @@ class NoteFormBloc extends Bloc<NoteFormEvent, NoteFormState> {
         showErrorMessages: true,
         saveFailureOrSuccessOption: optionOf(failureOrSuccess),
       );
-    }
-        // },
-        );
+    });
   }
 }

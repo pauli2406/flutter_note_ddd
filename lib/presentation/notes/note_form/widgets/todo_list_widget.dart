@@ -41,7 +41,7 @@ class TodoList extends StatelessWidget {
       },
       child: Consumer<FormTodos>(
         builder: (context, todoItems, child) {
-          return ImplicitlyAnimatedReorderableList<TodoItemPrimitive>(
+          return ImplicitlyAnimatedReorderableList<TodoItem>(
             shrinkWrap: true,
             items: todoItems.value.asList(),
             areItemsTheSame: (oldItem, newItem) => oldItem.id == newItem.id,
@@ -96,9 +96,7 @@ class TodoTile extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final todo =
-        context.formTodos.getOrElse(index, (_) => TodoItemPrimitive.empty());
-
+    final todo = context.formTodos.getOrElse(index, (_) => TodoItem.empty());
     final textEditingController = useTextEditingController(text: todo.name);
 
     return Slidable(

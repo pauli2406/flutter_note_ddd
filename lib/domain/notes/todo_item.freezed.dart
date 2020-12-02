@@ -15,10 +15,10 @@ class _$TodoItemTearOff {
 
 // ignore: unused_element
   _TodoItem call(
-      {@required String id, @required String todoName, @required bool done}) {
+      {@required String id, @required String name, @required bool done}) {
     return _TodoItem(
       id: id,
-      todoName: todoName,
+      name: name,
       done: done,
     );
   }
@@ -31,7 +31,7 @@ const $TodoItem = _$TodoItemTearOff();
 /// @nodoc
 mixin _$TodoItem {
   String get id;
-  String get todoName;
+  String get name;
   bool get done;
 
   $TodoItemCopyWith<TodoItem> get copyWith;
@@ -41,7 +41,7 @@ mixin _$TodoItem {
 abstract class $TodoItemCopyWith<$Res> {
   factory $TodoItemCopyWith(TodoItem value, $Res Function(TodoItem) then) =
       _$TodoItemCopyWithImpl<$Res>;
-  $Res call({String id, String todoName, bool done});
+  $Res call({String id, String name, bool done});
 }
 
 /// @nodoc
@@ -55,12 +55,12 @@ class _$TodoItemCopyWithImpl<$Res> implements $TodoItemCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
-    Object todoName = freezed,
+    Object name = freezed,
     Object done = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
-      todoName: todoName == freezed ? _value.todoName : todoName as String,
+      name: name == freezed ? _value.name : name as String,
       done: done == freezed ? _value.done : done as bool,
     ));
   }
@@ -71,7 +71,7 @@ abstract class _$TodoItemCopyWith<$Res> implements $TodoItemCopyWith<$Res> {
   factory _$TodoItemCopyWith(_TodoItem value, $Res Function(_TodoItem) then) =
       __$TodoItemCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String todoName, bool done});
+  $Res call({String id, String name, bool done});
 }
 
 /// @nodoc
@@ -86,12 +86,12 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
-    Object todoName = freezed,
+    Object name = freezed,
     Object done = freezed,
   }) {
     return _then(_TodoItem(
       id: id == freezed ? _value.id : id as String,
-      todoName: todoName == freezed ? _value.todoName : todoName as String,
+      name: name == freezed ? _value.name : name as String,
       done: done == freezed ? _value.done : done as bool,
     ));
   }
@@ -100,22 +100,22 @@ class __$TodoItemCopyWithImpl<$Res> extends _$TodoItemCopyWithImpl<$Res>
 /// @nodoc
 class _$_TodoItem extends _TodoItem {
   const _$_TodoItem(
-      {@required this.id, @required this.todoName, @required this.done})
+      {@required this.id, @required this.name, @required this.done})
       : assert(id != null),
-        assert(todoName != null),
+        assert(name != null),
         assert(done != null),
         super._();
 
   @override
   final String id;
   @override
-  final String todoName;
+  final String name;
   @override
   final bool done;
 
   @override
   String toString() {
-    return 'TodoItem(id: $id, todoName: $todoName, done: $done)';
+    return 'TodoItem(id: $id, name: $name, done: $done)';
   }
 
   @override
@@ -124,9 +124,8 @@ class _$_TodoItem extends _TodoItem {
         (other is _TodoItem &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.todoName, todoName) ||
-                const DeepCollectionEquality()
-                    .equals(other.todoName, todoName)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.done, done) ||
                 const DeepCollectionEquality().equals(other.done, done)));
   }
@@ -135,7 +134,7 @@ class _$_TodoItem extends _TodoItem {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(todoName) ^
+      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(done);
 
   @override
@@ -147,13 +146,13 @@ abstract class _TodoItem extends TodoItem {
   const _TodoItem._() : super._();
   const factory _TodoItem(
       {@required String id,
-      @required String todoName,
+      @required String name,
       @required bool done}) = _$_TodoItem;
 
   @override
   String get id;
   @override
-  String get todoName;
+  String get name;
   @override
   bool get done;
   @override

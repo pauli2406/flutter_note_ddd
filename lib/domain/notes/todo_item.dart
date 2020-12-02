@@ -13,7 +13,7 @@ abstract class TodoItem implements _$TodoItem {
 
   const factory TodoItem({
     @required String id,
-    @required String todoName,
+    @required String name,
     @required bool done,
   }) = _TodoItem;
 
@@ -21,12 +21,12 @@ abstract class TodoItem implements _$TodoItem {
 
   factory TodoItem.empty() => TodoItem(
         id: Uuid().v1(),
-        todoName: '',
+        name: '',
         done: false,
       );
 
   Option<ValueFailure<dynamic>> get failureOption {
-    return validateMaxStringLength(todoName, maxLength)
+    return validateMaxStringLength(name, maxLength)
         .flatMap(validateStringNotEmpty)
         .flatMap(validateSingleLine)
         .failureOrUnit()

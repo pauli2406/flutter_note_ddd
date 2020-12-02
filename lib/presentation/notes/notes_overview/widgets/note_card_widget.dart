@@ -101,7 +101,7 @@ class TodoDisplay extends StatelessWidget {
             Icons.check_box_outline_blank,
             color: Theme.of(context).disabledColor,
           ),
-        Text(todo.todoName),
+        Text(todo.name),
       ],
     );
   }

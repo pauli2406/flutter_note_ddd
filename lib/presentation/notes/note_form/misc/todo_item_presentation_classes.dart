@@ -10,8 +10,8 @@ class TodoListProperties {
   static const maxLength = 3;
 }
 
-class FormTodos extends ValueNotifier<KtList<TodoItemPrimitive>> {
-  FormTodos() : super(emptyList<TodoItemPrimitive>());
+class FormTodos extends ValueNotifier<KtList<TodoItem>> {
+  FormTodos() : super(emptyList<TodoItem>());
 }
 
 @freezed
@@ -30,7 +30,7 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
   factory TodoItemPrimitive.fromDomain(TodoItem todoItem) {
     return TodoItemPrimitive(
       id: todoItem.id,
-      name: todoItem.todoName,
+      name: todoItem.name,
       done: todoItem.done,
     );
   }
@@ -38,7 +38,7 @@ abstract class TodoItemPrimitive implements _$TodoItemPrimitive {
   TodoItem toDomain() {
     return TodoItem(
       id: id,
-      todoName: name,
+      name: name,
       done: done,
     );
   }

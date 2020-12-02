@@ -75,7 +75,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
   factory TodoItemDto.fromDomain(TodoItem todoItem) {
     return TodoItemDto(
       id: todoItem.id,
-      name: todoItem.todoName,
+      name: todoItem.name,
       done: todoItem.done,
     );
   }
@@ -83,7 +83,7 @@ abstract class TodoItemDto implements _$TodoItemDto {
   TodoItem toDomain() {
     return TodoItem(
       id: id,
-      todoName: name,
+      name: name,
       done: done,
     );
   }

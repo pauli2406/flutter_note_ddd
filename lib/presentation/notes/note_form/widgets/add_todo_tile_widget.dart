@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:neverForget/application/note/note_form/note_form_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:neverForget/presentation/notes/note_form/misc/todo_item_presentation_classes.dart';
+import 'package:neverForget/domain/notes/todo_item.dart';
 import 'package:neverForget/presentation/notes/note_form/misc/build_context_x.dart';
 import 'package:neverForget/presentation/core/list_extensions.dart';
 
@@ -16,8 +16,7 @@ class AddTodoTile extends StatelessWidget {
     return BlocConsumer<NoteFormBloc, NoteFormState>(
       listenWhen: (p, c) => p.isEditing != c.isEditing,
       listener: (context, state) {
-        context.formTodos =
-            state.note.todos.map((todo) => TodoItemPrimitive.fromDomain(todo));
+        context.formTodos = state.note.todos;
       },
       buildWhen: (p, c) => p.note.todos.isFull() != c.note.todos.isFull(),
       builder: (context, state) {
@@ -29,8 +28,7 @@ class AddTodoTile extends StatelessWidget {
             child: Icon(Icons.add),
           ),
           onTap: () {
-            context.formTodos =
-                context.formTodos.plusElement(TodoItemPrimitive.empty());
+            context.formTodos = context.formTodos.plusElement(TodoItem.empty());
             context.read<NoteFormBloc>().add(
                   NoteFormEvent.todosChanged(context.formTodos),
                 );
